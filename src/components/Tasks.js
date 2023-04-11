@@ -8,33 +8,24 @@ const Tasks = ({
   HandleTaskCompleted,
 }) => {
   // This function is to do delete Tasks
-  const Delete = (id) => {
-    fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        const afterFilter = list.filter((item, ind) => {
-          return ind + 1 !== id;
-        });
-        handleDelete(afterFilter);
-      });
+  const Delete = async (id) => {
+    handleDelete(id);
   };
 
+//   task edit function send call to update task in it's parent node
   const editT = (id) => {
     list.map((item, ind) => {
-      if (ind + 1 === id) {
-        updateTask(item.title, ind + 1);
-      }
+      return (
+        ind+1===id?updateTask(item.title, ind + 1):null
+      )
     });
   };
 
+//   work done or not done function
   const markAsCompleted = (id) => {
     list.map((item, ind) => {
       if (ind + 1 === id) {
-        HandleTaskCompleted(item, ind + 1);
+        HandleTaskCompleted(ind + 1);
       }
       return item;
     });

@@ -21,7 +21,6 @@ const App = () => {
         return res.json();
       })
       .then((data) => {
-        // console.log(data);
         setList(data);
       })
       .catch((err) => {
@@ -34,85 +33,48 @@ const App = () => {
     if (task === "") {
       return;
     }
-    await fetch("https://jsonplaceholder.typicode.com/todos/?userId=1", {
-      method: "POST",
-      body: JSON.stringify({
-        title: task,
-        userId: 1,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setList([{ userId: 1, title: task, completed: false }, ...list]);
-    
-      });
+    setList([{ userId: 1, title: task, completed: false }, ...list]);
     setTask("");
   };
 
- 
-
-  const handleDelete = (data) => {
-    // console.log(data);
-    setList(data);
+  // delete item from the task list
+  const handleDelete = (id) => {
+    const afterFilter = list.filter((item, ind) => {
+      return ind + 1 !== id;
+    });
+    setList(afterFilter);
   };
 
   //  here you can update Tasks
   const updateTask = (data, id) => {
-    // console.log(data, id - 1);
     setUpdate(true);
     setTask(data);
     setToUpdateTaskbyId(id - 1);
-     };
+  };
 
+  // updating task list
   const updatingTask = async () => {
     if (task === "") {
       return;
     }
-    await fetch("https://jsonplaceholder.typicode.com/todos/?userId=1", {
-      method: "PUT",
-      body: JSON.stringify({
-        title: task,
-        userId: 1,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setUpdate(false);
-      
-        list.map((item, ind) => {
-          if (ind === toUpdateTaskbyId) {
-            item.title = task;
-          }
-          setList([...list]);
-        });
-      });
+    setUpdate(false);
+    list.map((item, ind) => {
+      return(
+        ind===toUpdateTaskbyId?(item.title=task):("")
+      )
+    });
+    setList([...list]);
     setTask("");
   };
 
   //  THis function is for handle tasks
-  const HandleTaskCompleted = (data, id) => {
+  const HandleTaskCompleted = (id) => {
     list.map((item, ind) => {
-      if (ind + 1 === id) {
-        if (item.completed) {
-          item.completed = false;
-        } else {
-          item.completed = true;
-        }
-      }
-      setList([...list]);
+      return(
+        ind+1===id?(item.completed?(item.completed=false):(item.completed=true)):("")
+      )
     });
-
-   
+    setList([...list]);
   };
 
   return (
