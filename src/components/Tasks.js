@@ -50,30 +50,30 @@ const Tasks = ({
                 <img
                   className="edit-btn"
                   onClick={() => editT(ind + 1)}
-                  src="https://cdn-icons-png.flaticon.com/512/1828/1828270.png"
-                  alt=""
+                  src="https://cdn-icons-png.flaticon.com/512/6461/6461127.png"
+                  alt="edit"
                 />
               )}
               {item.completed ? (
                 <img
                   className="checkbox"
                   onClick={() => markAsCompleted(ind + 1)}
-                  src="https://cdn-icons-png.flaticon.com/512/5176/5176456.png"
-                  alt=""
+                  src="https://cdn-icons-png.flaticon.com/512/2954/2954893.png"
+                  alt="done"
                 />
               ) : (
                 <img
                   className="checkbox"
                   onClick={() => markAsCompleted(ind + 1)}
-                  src="https://cdn-icons-png.flaticon.com/512/5176/5176427.png"
-                  alt=""
+                  src="https://cdn-icons-png.flaticon.com/512/8208/8208902.png"
+                  alt="undone"
                 />
               )}
               <img
                 className="delete-btn"
                 onClick={() => Delete(ind + 1)}
-                src="https://cdn-icons-png.flaticon.com/512/1214/1214926.png"
-                alt=""
+                src="https://cdn-icons-png.flaticon.com/512/3405/3405234.png"
+                alt="delete"
               />
             </div>
           );

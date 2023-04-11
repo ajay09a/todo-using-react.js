@@ -79,7 +79,7 @@ const App = () => {
 
   return (
     <div className="todo_list_container">
-      <h1 className="todo_title">To Do App</h1>
+      <div className="heading"><h1 className="todo_title">To Do App</h1></div>
       <input
         type="text"
         className="addtoTask"
@@ -91,15 +91,15 @@ const App = () => {
         <img
           className="addtoTaskBtn"
           onClick={() => updatingTask()}
-          src="https://cdn-icons-png.flaticon.com/512/1828/1828753.png"
-          alt=""
+          src="https://cdn-icons-png.flaticon.com/512/3114/3114824.png"
+          alt="update list"
         />
       ) : (
         <img
           className="addtoTaskBtn"
           onClick={() => addTasksToList()}
-          src="https://cdn-icons-png.flaticon.com/512/4210/4210903.png"
-          alt=""
+          src="https://cdn-icons-png.flaticon.com/512/10257/10257707.png"
+          alt="add to list"
         />
       )}
 
