@@ -73,12 +73,28 @@ const App = () => {
     if (task === "") {
       return;
     }
-    setUpdate(false);
-    list.map((item, ind) => {
-      return(
-        ind===toUpdateTaskbyId?(item.title=task):("")
-      )
-    });
+    await fetch("https://jsonplaceholder.typicode.com/todos/?userId=1", {
+      method: "PUT",
+      body: JSON.stringify({
+        title: task,
+        userId: 1,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setUpdate(false);
+      
+        list.map((item, ind) => {
+          return(
+            ind===toUpdateTaskbyId?(item.title=task):("")
+          )
+        });
+      });
     setList([...list]);
     setTask("");
   };
