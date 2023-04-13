@@ -55,10 +55,18 @@ const App = () => {
 
   // delete item from the task list
   const handleDelete = (id) => {
-    const afterFilter = list.filter((item, ind) => {
-      return ind + 1 !== id;
-    });
-    setList(afterFilter);
+    fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        const afterFilter = list.filter((item, ind) => {
+          return ind + 1 !== id;
+        });
+        setList(afterFilter);
+      });
   };
 
   //  here you can update Tasks
