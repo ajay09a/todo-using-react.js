@@ -33,7 +33,23 @@ const App = () => {
     if (task === "") {
       return;
     }
-    setList([{ userId: 1, title: task, completed: false }, ...list]);
+    await fetch("https://jsonplaceholder.typicode.com/todos/?userId=1", {
+      method: "POST",
+      body: JSON.stringify({
+        title: task,
+        userId: 1,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setList([{ userId: 1, title: task, completed: false }, ...list]);
+    
+      });
     setTask("");
   };
 
